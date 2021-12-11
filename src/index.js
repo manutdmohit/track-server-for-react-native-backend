@@ -15,6 +15,8 @@ mongoose
   .then(() => console.log('The connection is successful'))
   .catch((err) => console.error('There is no connection', err));
 
+app.use(express.json());
+
 app.use(authRoutes);
 
 app.get('/', (req, res) => {
