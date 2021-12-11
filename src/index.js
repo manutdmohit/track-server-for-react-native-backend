@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 
 const mongoUri =
@@ -12,6 +14,8 @@ mongoose
   })
   .then(() => console.log('The connection is successful'))
   .catch((err) => console.error('There is no connection', err));
+
+app.use(authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hi there');
