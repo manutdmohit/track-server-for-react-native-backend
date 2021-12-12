@@ -5,13 +5,17 @@ const User = require('../models/User');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const user = new User({ email, password });
+    const user = new User({ email, password });
 
-  await user.save();
+    await user.save();
 
-  res.send('Post request successful');
+    res.send('Post request successful');
+  } catch (error) {
+    return res.status(422).send(error.message);
+  }
 });
 
 module.exports = router;
