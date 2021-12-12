@@ -2,6 +2,7 @@ require('./models/User');
 
 const express = require('express');
 const mongoose = require('mongoose');
+const requireAuth = require('./middlewares/requireAuth');
 
 const authRoutes = require('./routes/authRoutes');
 
@@ -21,8 +22,8 @@ app.use(express.json());
 
 app.use(authRoutes);
 
-app.get('/', (req, res) => {
-  res.send('Hi there');
+app.get('/', requireAuth, (req, res) => {
+  res.send(`Your email: ${req.user.email}`);
 });
 
 app.listen(8000, () => {
