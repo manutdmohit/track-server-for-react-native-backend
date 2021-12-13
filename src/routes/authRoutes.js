@@ -36,7 +36,7 @@ router.post('/signin', async (req, res) => {
   }
 
   try {
-    await user.comaprePassword(password);
+    await user.comparePassword(password);
     const token = jwt.sign(
       { userId: user._id },
       'THISISASECRETKEYTOPTOPSECRETKEY'
