@@ -9,6 +9,8 @@ const authRoutes = require('./routes/authRoutes');
 
 const trackRoutes = require('./routes/trackRoutes');
 
+const PORT = process.env.PORT || 8000;
+
 const app = express();
 
 const mongoUri =
@@ -30,6 +32,6 @@ app.get('/', requireAuth, (req, res) => {
   res.send(`Your email: ${req.user.email}`);
 });
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log('Listening on the port 8000');
 });
